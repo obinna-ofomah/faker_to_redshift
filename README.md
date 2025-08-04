@@ -1,40 +1,41 @@
-# Project: ETL Pipeline: Fake Order Data to S3 & Redshift
+# Project: ETL Pipeline – Fake Order Data to S3 & Redshift
+
 ![Alt text](faker_new.png)
+
 ---
-### Description:
-This is a lightweight ETL pipeline that does one job fairly well: it generates fake order data, writes it to Amazon S3 in Parquet format, and sets up a corresponding table in Redshift (if it's not already there).
+
+### 📋 Description
+
+#### 1. Generates Fake Order Data  
+Uses the `Faker` library to simulate customer names, addresses, dates, quantities, and prices.  
+The number of records is random — anywhere between **500,000** and **1,000,000**.
+
+#### 2. Writes to S3  
+Converts the data into a `pandas` DataFrame and writes it to a specified S3 bucket in **Parquet format** using `awswrangler`.
+
+#### 3. Creates a Redshift Table (If Missing)  
+Ensures there’s a table in Redshift called `orders` with the right schema.  
+*Note: this script doesn’t load any data into Redshift — it just creates the table structure.*
+
 ---
-It’s meant for testing, demo purposes, or wherever you need large-ish volumes of realistic dummy data.
 
-What It Does
-Generates fake order data
-Uses the Faker library to simulate customer names, addresses, dates, quantities, and prices. The number of records is random — anywhere between 500,000 and 1 million.
+### 📦 Requirements
 
-Writes to S3
-Converts the data into a pandas DataFrame and saves it in Parquet format to a specified S3 bucket and folder, using awswrangler.
+Make sure you have the following installed and configured:
 
-Creates a Redshift table (if missing)
-Ensures there's a table in Redshift called orders with the right schema. Doesn't load any data into it, just sets it up.
+- Python 3.x  
+- [`awswrangler`](https://github.com/aws/aws-sdk-pandas)  
+- `boto3`  
+- `pandas`  
+- `faker`  
+- Apache Airflow (used for managing environment variables)
 
-Requirements
-Make sure you have the following:
+And access to:
 
-Python 3.x
-
-awswrangler
-
-boto3
-
-pandas
-
-faker
-
-Apache Airflow (for handling Variable)
-
-Access to:
-
-An S3 bucket
-
-AWS credentials (stored as Airflow variables: access_key, secret_key, region)
-
-A Redshift connection configured in Airflow (postgres_conn_id="redshift")
+- An **S3 bucket**  
+- **AWS credentials** stored as Airflow variables:
+  - `access_key`  
+  - `secret_key`  
+  - `region`
+- A **Redshift connection** set up in Airflow:
+  - `postgres_conn_id="redshift"`
