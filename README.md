@@ -1,4 +1,4 @@
-# Project: ETL Pipeline – Fake Order Data to S3 & Redshift
+### Project: ETL Pipeline – Fake Order Data to S3 & Redshift
 
 ![Alt text](faker_new.png)
 
