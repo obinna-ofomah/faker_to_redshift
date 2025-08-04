@@ -1,5 +1,5 @@
 # Project: ETL Pipeline: Fake Order Data to S3 & Redshift
-![Alt text](path/to/image.png)
+![Alt text](faker_to_redshift/.png)
 ---
 ### Description:
 This is a lightweight ETL pipeline that does one job fairly well: it generates fake order data, writes it to Amazon S3 in Parquet format, and sets up a corresponding table in Redshift (if it's not already there).
