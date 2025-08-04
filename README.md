@@ -4,38 +4,14 @@
 
 ---
 
-### 📋 Description
+## Description:
 
-#### 1. Generates Fake Order Data  
-Uses the `Faker` library to simulate customer names, addresses, dates, quantities, and prices.  
-The number of records is random — anywhere between **500,000** and **1,000,000**.
 
-#### 2. Writes to S3  
-Converts the data into a `pandas` DataFrame and writes it to a specified S3 bucket in **Parquet format** using `awswrangler`.
+This project implements an **ETL (Extract, Transform, Load)** pipeline using Apache Airflow. The pipeline generates fakes data from the Faker Library, transforms the relevant fields, and loads the data into an S3 bucket in Parquet format, and finally moved same to Redshift
 
-#### 3. Creates a Redshift Table (If Missing)  
-Ensures there’s a table in Redshift called `orders` with the right schema.  
-*Note: this script doesn’t load any data into Redshift — it just creates the table structure.*
 
----
-
-### 📦 Requirements
-
-Make sure you have the following installed and configured:
-
-- Python 3.x  
-- [`awswrangler`](https://github.com/aws/aws-sdk-pandas)  
-- `boto3`  
-- `pandas`  
-- `faker`  
-- Apache Airflow (used for managing environment variables)
-
-And access to:
-
-- An **S3 bucket**  
-- **AWS credentials** stored as Airflow variables:
-  - `access_key`  
-  - `secret_key`  
-  - `region`
-- A **Redshift connection** set up in Airflow:
-  - `postgres_conn_id="redshift"`
+### 📋 Project Stages
+- Generate Fake Dataset using Faker  
+- Transform and write to S3 Bucket
+- Connect to S3 Bucket and Amazon Redshift
+- Load from S3 Bucket to Redshift
